@@ -10,49 +10,85 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
         :root {
-            --primary: #3b5998;
-            --secondary: #8b9dc3;
-            --accent: #dfe3ee;
+            --primary: #3a0ca3;
+            --primary-light: #4361ee;
+            --secondary: #f72585;
+            --accent: #4cc9f0;
             --light: #f7f7f7;
-            --dark: #343a40;
-            --success: #28a745;
-            --warning: #ffc107;
+            --dark: #2b2d42;
+            --success: #4ade80;
+            --warning: #facc15;
+            --info: #06b6d4;
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, #ff70a6 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, #4895ef 100%);
+            --gradient-light: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
         }
 
         body {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--light) 100%);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--gradient-light);
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding: 20px 0 50px;
             min-height: 100vh;
+            color: var(--dark);
         }
 
         .container {
             background: #fff;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
             margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-primary);
         }
 
         .header-section {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: var(--gradient-primary);
             color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(58, 12, 163, 0.15);
+        }
+
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+            transform: rotate(30deg);
         }
 
         .logo-container {
             background: white;
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            border: 3px solid var(--primary-light);
         }
 
         .logo-placeholder {
@@ -62,65 +98,114 @@
 
         .form-section {
             border-left: 4px solid var(--primary);
-            padding: 20px 25px;
-            border-radius: 8px;
+            padding: 25px;
+            border-radius: 12px;
             background-color: #ffffff;
-            margin-bottom: 25px;
-            box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+            box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 30px;
+            border-top-right-radius: 12px;
+            background: var(--gradient-primary);
+            opacity: 0.1;
         }
 
         .form-section:hover {
             transform: translateY(-5px);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.08);
         }
 
         .section-title {
             color: var(--primary);
             border-bottom: 2px solid var(--accent);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-weight: 600;
+            padding-bottom: 12px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
         }
 
         .form-control,
         .form-select {
-            border-radius: 8px;
-            padding: 12px 15px;
-            border: 1px solid #ced4da;
+            border-radius: 10px;
+            padding: 14px 16px;
+            border: 1.5px solid #e2e8f0;
             transition: all 0.3s;
+            font-size: 15px;
         }
 
         .form-control:focus,
         .form-select:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 0.25rem rgba(59, 89, 152, 0.25);
-        }
-
-        .form-label {
-            font-weight: 500;
-            margin-bottom: 8px;
-            color: var(--dark);
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            border-color: var(--primary);
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .btn-primary:hover {
-            background-color: #2d4373;
-            border-color: #2d4373;
+            box-shadow: 0 0 0 0.25rem rgba(58, 12, 163, 0.15);
             transform: translateY(-2px);
         }
 
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(58, 12, 163, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(58, 12, 163, 0.3);
+        }
+
+        .btn-outline-secondary {
+            border: 2px solid #e2e8f0;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #64748b;
+        }
+
+        .btn-outline-secondary:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
         .checkbox-group {
-            background: var(--light);
-            padding: 15px;
-            border-radius: 8px;
+            background: var(--gradient-light);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
         }
 
         .form-check-input:checked {
@@ -128,25 +213,42 @@
             border-color: var(--primary);
         }
 
+        .form-check-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(58, 12, 163, 0.25);
+        }
+
         .signature-area {
-            border-top: 2px dashed #dee2e6;
-            padding-top: 20px;
-            margin-top: 30px;
+            border-top: 2px dashed #e2e8f0;
+            padding-top: 25px;
+            margin-top: 35px;
         }
 
         .table th {
-            background-color: var(--primary);
+            background: var(--gradient-primary);
             color: white;
+            font-weight: 600;
+            border: none;
+        }
+
+        .table td {
+            border-color: #e2e8f0;
+            vertical-align: middle;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(67, 97, 238, 0.05);
         }
 
         .ibm-badge {
-            background: linear-gradient(to right, #054ada, #1f62ff);
+            background: var(--gradient-secondary);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 30px;
             display: inline-block;
             font-weight: bold;
             margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.2);
         }
 
         @media (max-width: 768px) {
@@ -155,54 +257,118 @@
             }
 
             .form-section {
-                padding: 15px;
+                padding: 20px;
+            }
+            
+            .header-section {
+                padding: 20px 15px;
             }
         }
 
         .floating-label {
             position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .floating-label .form-control {
-            height: 55px;
-            padding-top: 20px;
+            height: 58px;
+            padding-top: 22px;
         }
 
         .floating-label label {
             position: absolute;
-            top: 10px;
-            left: 15px;
-            font-size: 12px;
-            color: #6c757d;
+            top: 12px;
+            left: 16px;
+            font-size: 13px;
+            color: #64748b;
             transition: all 0.3s;
             pointer-events: none;
+            font-weight: 500;
         }
 
-        .floating-label .form-control:focus~label,
-        .floating-label .form-control:not(:placeholder-shown)~label {
-            top: 2px;
-            left: 12px;
-            font-size: 10px;
+        .floating-label .form-control:focus ~ label,
+        .floating-label .form-control:not(:placeholder-shown) ~ label {
+            top: 4px;
+            left: 14px;
+            font-size: 11px;
             color: var(--primary);
+            font-weight: 600;
+        }
+
+        .form-divider {
+            height: 2px;
+            background: var(--gradient-light);
+            margin: 30px 0;
+            border: none;
+        }
+
+        .decoration-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .circle-1 {
+            width: 150px;
+            height: 150px;
+            background: var(--primary);
+            top: -50px;
+            right: -50px;
+        }
+
+        .circle-2 {
+            width: 100px;
+            height: 100px;
+            background: var(--secondary);
+            bottom: -30px;
+            left: -30px;
+        }
+
+        .required-field::after {
+            content: '*';
+            color: var(--secondary);
+            margin-left: 3px;
+        }
+        
+        .animated-border {
+            position: relative;
+        }
+        
+        .animated-border::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+        
+        .animated-border:focus-within::after {
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <!-- Decorative circles -->
+        <div class="decoration-circle circle-1"></div>
+        <div class="decoration-circle circle-2"></div>
+        
         <!-- Header Section -->
         <div class="header-section">
             <div class="logo-container">
-                <i><img src="SLA-Logo.jpg" width="100px" alt=""></i>
-                <!-- <i class="bi bi-code-slash logo-placeholder"></i> -->
+                <i><img src="SLA-Logo.jpg" width="100px" alt="SLA Logo"></i>
             </div>
-            <h2 class="mb-1">Softlogic System</h2>
+            <h2 class="mb-1">Softlogic Systems</h2>
             <p class="mb-0">We Build Your Future! | <strong>Enquiry Form</strong></p>
             <div class="ibm-badge mt-2">
                 <i class="bi bi-award-fill me-2"></i>AUTHORISED CERTIFICATION PARTNER - IBM
             </div>
-            <p class="mb-0 mt-3">Date: <span>June 05, 2025</span></p>
+            <p class="mb-0 mt-3">Date: June 05, 2025</p>
         </div>
 
         <!-- Student Information Section -->
@@ -211,19 +377,19 @@
 
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <div class="floating-label">
-                        <input type="text" class="form-control" id="studentName" placeholder="Student Name">
-                        <label for="studentName">Student Name</label>
+                    <div class="floating-label animated-border">
+                        <input type="text" class="form-control" id="studentName" placeholder="Student Name" required>
+                        <label for="studentName" class="required-field">Student Name</label>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <div class="floating-label">
-                        <input type="text" class="form-control" id="contactNo" placeholder="Contact No">
-                        <label for="contactNo">Contact No</label>
+                    <div class="floating-label animated-border">
+                        <input type="text" class="form-control" id="contactNo" placeholder="Contact No" required>
+                        <label for="contactNo" class="required-field">Contact No</label>
                     </div>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <div class="floating-label">
+                    <div class="floating-label animated-border">
                         <input type="text" class="form-control" id="alternateNo" placeholder="Alternate No">
                         <label for="alternateNo">Alternate No</label>
                     </div>
@@ -231,16 +397,16 @@
             </div>
 
             <div class="mb-3">
-                <div class="floating-label">
-                    <input type="email" class="form-control" id="email" placeholder="Email ID">
-                    <label for="email">Email ID</label>
+                <div class="floating-label animated-border">
+                    <input type="email" class="form-control" id="email" placeholder="Email ID" required>
+                    <label for="email" class="required-field">Email ID</label>
                 </div>
             </div>
 
             <div class="mb-4">
-                <div class="floating-label">
-                    <input type="text" class="form-control" id="address" placeholder="Address">
-                    <label for="address">Address</label>
+                <div class="floating-label animated-border">
+                    <input type="text" class="form-control" id="address" placeholder="Address" required>
+                    <label for="address" class="required-field">Address</label>
                 </div>
             </div>
 
@@ -365,7 +531,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <div class="floating-label">
+                    <div class="floating-label animated-border">
                         <input type="text" class="form-control" placeholder="Other Courses">
                         <label>Other Courses (Please specify)</label>
                     </div>
@@ -409,13 +575,13 @@
                 <h5 class="section-title"><i class="bi bi-briefcase-fill me-2"></i>Employment Details</h5>
                 <div class="row">
                     <div class="col-md-8 mb-3">
-                        <div class="floating-label">
+                        <div class="floating-label animated-border">
                             <input type="text" class="form-control" placeholder="If employed, Name of the Company">
                             <label>If employed, Name of the Company</label>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <div class="floating-label">
+                        <div class="floating-label animated-border">
                             <input type="text" class="form-control" placeholder="Role">
                             <label>Role</label>
                         </div>
@@ -437,13 +603,13 @@
 
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <div class="floating-label">
+                    <div class="floating-label animated-border">
                         <input type="text" class="form-control" placeholder="Course Name">
                         <label>Course Name</label>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="floating-label">
+                    <div class="floating-label animated-border">
                         <input type="text" class="form-control" placeholder="Duration">
                         <label>Duration</label>
                     </div>
@@ -452,19 +618,19 @@
 
             <div class="row mb-4">
                 <div class="col-md-4">
-                    <div class="floating-label">
+                    <div class="floating-label animated-border">
                         <input type="text" class="form-control" placeholder="Total Fees">
                         <label>Total Fees</label>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="floating-label">
+                    <div class="floating-label animated-border">
                         <input type="text" class="form-control" placeholder="Discount">
                         <label>Discount</label>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="floating-label">
+                    <div class="floating-label animated-border">
                         <input type="text" class="form-control" placeholder="Final Fees">
                         <label>Final Fees</label>
                     </div>
@@ -473,13 +639,13 @@
 
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <div class="floating-label">
+                    <div class="floating-label animated-border">
                         <input type="text" class="form-control" placeholder="Admission Fees">
                         <label>Admission Fees</label>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="floating-label">
+                    <div class="floating-label animated-border">
                         <input type="date" class="form-control">
                         <label>Date</label>
                     </div>
@@ -488,13 +654,13 @@
 
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <div class="floating-label">
+                    <div class="floating-label animated-border">
                         <input type="text" class="form-control" placeholder="First Installment">
                         <label>First Installment</label>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="floating-label">
+                    <div class="floating-label animated-border">
                         <input type="date" class="form-control">
                         <label>Date</label>
                     </div>
@@ -503,13 +669,13 @@
 
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <div class="floating-label">
+                    <div class="floating-label animated-border">
                         <input type="text" class="form-control" placeholder="Second Installment">
                         <label>Second Installment</label>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="floating-label">
+                    <div class="floating-label animated-border">
                         <input type="date" class="form-control">
                         <label>Date</label>
                     </div>
@@ -517,7 +683,7 @@
             </div>
 
             <div class="mb-4">
-                <div class="floating-label">
+                <div class="floating-label animated-border">
                     <input type="text" class="form-control" placeholder="Other Details">
                     <label>Other Details</label>
                 </div>
